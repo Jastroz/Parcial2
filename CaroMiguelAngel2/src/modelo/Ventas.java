@@ -56,7 +56,7 @@ public class Ventas {
 	public void leerArchivoProductos(String nombrearchivo)
 	{
 		f = new File(nombrearchivo);
-		String[] dv = new String[5];
+		String[] dv = new String[3];
 		int i=0;
 		try 
 		{

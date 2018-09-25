@@ -1,10 +1,12 @@
 package modelo;
 
+import java.io.IOException;
+
 public class Mundo {
 	private Ventas ventas;
 	private Configuracion config;
 
-	public Mundo() {
+	public Mundo() throws IOException {
 		// TODO Auto-generated constructor stub
 		config = new Configuracion();
 		ventas = new Ventas(config.getMaxRegistros());

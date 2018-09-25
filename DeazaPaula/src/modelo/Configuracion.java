@@ -16,7 +16,7 @@ public class Configuracion {
 	private Properties prop;
 	private String archivoprop = "configuracion.properties";
 
-	public Configuracion() {
+	public Configuracion() throws IOException {
 		prop = new Properties();
 		archivoVenta="";
 		archivoDetalleVenta="";
@@ -25,25 +25,17 @@ public class Configuracion {
 		IVA = 0;
 		getPropiedades();
 	}
-	public void getPropiedades() 
-	{
-		try {
-			prop.load(new FileInputStream(archivoprop));
-			prop.list(System.out);
-			System.out.println(prop.getProperty("archivoDetalleVenta"));
-			System.out.println(prop.getProperty("archivoVenta"));
-			System.out.println(prop.getProperty("iva"));
-			System.out.println(prop.getProperty("archivoProducto"));
-			System.out.println(prop.getProperty("maxRegistros"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
+	public void getPropiedades() throws IOException {
 		
-	}
+			prop.load(new FileInputStream(archivoprop));
+			
+			setArchivoDetalleVenta(prop.getProperty(archivoDetalleVenta,"detalleventa.txt"));
+			setArchivoVenta(prop.getProperty(archivoVenta,"venta.txt"));
+			setArchivoProducto(prop.getProperty(archivoProducto, "producto.txt"));
+			setIVA((double)(Double.parseDouble(prop.getProperty("iva"))));
+			setMaxRegistros(Integer.parseInt(prop.getProperty("maxRegistros")));
+			
+		}
 
 	public String getArchivoVenta() {
 		return archivoVenta;

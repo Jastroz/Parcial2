@@ -68,7 +68,7 @@ public class Ventas {
 				productos[i] = new Producto();
 				this.productos[i].setCodigoProducto(Integer.parseInt(dv[0])); 
 				this.productos[i].setNombreProducto(dv[1]);
-				this.productos[i].setValorProducto(Integer.parseInt(dv[2]));
+				this.productos[i].setValorProducto(Double.parseDouble(dv[2]));
 				linea = br.readLine();
 				i++;
 			}
@@ -92,18 +92,20 @@ public class Ventas {
 	}
 	public void consolidarVentas(double IVA) {
 	
-		for (int i = 0; i < detalleVentas.length; i++) {
-			this.totalRegDV += ( detalleVentas[i].getCantidad()) + IVA;
+		for (int i = 0; i < this.totalRegDV ; i++) {
+			valorTotal += detalleVentas[i].getValorTotal();
 		}
+		valorIVA = valorTotal*(IVA/100);
+		valormasIVA = valorTotal + valorIVA;
 		}
 	public String generarReporteVentas() {
 		
 		String reporte = "";
-		
-		for (int i = 0; i < productos.length; i++) {
-			
-		}
-		
+		reporte = "Consolidado de ventas por dia \n \n";
+	
+			reporte += "**Total ventas " + getValorTotal()+"\n";
+			reporte += "**Valor de IVA " + getValorIVA() + "\n";
+			reporte += "**Total con IVA " + getValormasIVA();
 		return reporte;
 	}
 	
@@ -117,6 +119,66 @@ public class Ventas {
 			linea += this.detalleVentas[i].getValorTotal()+"\n";
 		}
 		return linea;
+	}
+	public DetalleVentas[] getDetalleVentas() {
+		return detalleVentas;
+	}
+	public void setDetalleVentas(DetalleVentas[] detalleVentas) {
+		this.detalleVentas = detalleVentas;
+	}
+	public Producto[] getProductos() {
+		return productos;
+	}
+	public void setProductos(Producto[] productos) {
+		this.productos = productos;
+	}
+	public double getValorTotal() {
+		return valorTotal;
+	}
+	public void setValorTotal(double valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+	public double getValorIVA() {
+		return valorIVA;
+	}
+	public void setValorIVA(double valorIVA) {
+		this.valorIVA = valorIVA;
+	}
+	public double getValormasIVA() {
+		return valormasIVA;
+	}
+	public void setValormasIVA(double valormasIVA) {
+		this.valormasIVA = valormasIVA;
+	}
+	public int getTotalRegDV() {
+		return totalRegDV;
+	}
+	public void setTotalRegDV(int totalRegDV) {
+		this.totalRegDV = totalRegDV;
+	}
+	public int getTotalRegPR() {
+		return totalRegPR;
+	}
+	public void setTotalRegPR(int totalRegPR) {
+		this.totalRegPR = totalRegPR;
+	}
+	public File getF() {
+		return f;
+	}
+	public void setF(File f) {
+		this.f = f;
+	}
+	public FileReader getFr() {
+		return fr;
+	}
+	public void setFr(FileReader fr) {
+		this.fr = fr;
+	}
+	public BufferedReader getBr() {
+		return br;
+	}
+	public void setBr(BufferedReader br) {
+		this.br = br;
 	}
 }
 

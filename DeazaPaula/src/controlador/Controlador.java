@@ -1,5 +1,7 @@
 package controlador;
 
+import java.io.IOException;
+
 import modelo.Mundo;
 import vista.Interfaz;
 
@@ -9,7 +11,7 @@ public class Controlador {
 
 	private Interfaz gui;
 
-	public Controlador() {
+	public Controlador() throws IOException {
 
 		bd = new Mundo();
 		gui = new Interfaz();

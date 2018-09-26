@@ -18,7 +18,7 @@ public class Configuracion {
 
 	public Configuracion() {
 		prop = new Properties();
-		archivoVenta="";
+		archivoVenta ="";
 		archivoDetalleVenta="";
 		archivoProducto="";
 		maxRegistros=0;
